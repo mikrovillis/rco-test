@@ -33,11 +33,6 @@ function findMostCommonOffset(tokens) {
       offset++;
     }
   }
-
-  if (offsets.length === 0) {
-    throw new Error("No valid decoding found");
-  }
-
   return mostCommon(offsets);
 }
 
@@ -48,7 +43,7 @@ function decodeAtOffset(token, offset) {
 
   // only this replacement actually matters for decoding
   // this marker rotates, hopefully this catchall regex works
-  token = token.replace(/[A-Za-z]{2}__[A-Za-z0-9]{6}_/g, 'g');
+  token = token.replace(/[A-Za-z0-9]{2}__[A-Za-z0-9]{6}_/g, 'g');
 
   // the actual decoding is in baeu function in /Scripts/rguard.min.js
   
@@ -114,3 +109,17 @@ const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || []
 const offset = findMostCommonOffset(tokens);
 
 JSON.stringify(tokens.map(token => decodeAtOffset(token, offset)));
+
+
+// const tokens = [...$0.innerHTML.matchAll(tokenPattern)].map(m => m[1]) || [];
+
+// const offset = findMostCommonOffset(tokens);
+// for (const [id, token] of tokens.entries()) {
+//   try {
+//     const url = decodeAtOffset(token, offset);
+//     console.log(id, url);
+//   } catch (e) {
+//     // console.warn("Failed to decode token", id, token, e);
+//   }
+// }
+// console.log("Using offset", offset);
