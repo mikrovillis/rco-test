@@ -33,6 +33,7 @@ function findMostCommonOffset(tokens) {
       offset++;
     }
   }
+
   return mostCommon(offsets);
 }
 
