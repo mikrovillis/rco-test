@@ -59,7 +59,7 @@ function decodeAtOffset(token, offset) {
   token = token.substring(0, token.length - 11) + token.slice(-2);
 
   // base64 decode
-  token = atob(token);
+  token = decodeURIComponent(atob(token));
 
   // remove chars between index 13 and 17
   token = token.substring(0, 13) + token.substring(17);
@@ -110,7 +110,9 @@ const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || []
 
 const offset = findMostCommonOffset(tokens);
 
-JSON.stringify(tokens.map(token => decodeAtOffset(token, offset)));
+const pageLinks = tokens.map(token => decodeAtOffset(token, offset));
+
+JSON.stringify(pageLinks);
 
 
 
