@@ -118,24 +118,11 @@ JSON.stringify(tokens.map(token => decodeAtOffset(token, offset)));
 
 
 
-document.body.querySelectorAll("script").forEach(script => {
-	/** @type {string[]}  */ 
-  const tokens = [...script.innerHTML.matchAll(tokenPattern)].map(m => m[1]) || [];
-  const offset = findMostCommonOffset(tokens);
-  console.log(tokens, offset)
-  console.log("Decoded urls:", JSON.stringify(tokens.map(token => decodeAtOffset(token, offset))));
+// document.body.querySelectorAll("script").forEach(script => {
+// 	/** @type {string[]}  */ 
+//   const tokens = [...script.innerHTML.matchAll(tokenPattern)].map(m => m[1]) || [];
+//   const offset = findMostCommonOffset(tokens);
+//   console.log(tokens, offset)
+//   console.log("Decoded urls:", JSON.stringify(tokens.map(token => decodeAtOffset(token, offset))));
   
-})
-// const tokens = [...$0.innerHTML.matchAll(tokenPattern)].map(m => m[1]) || [];
-
-// const offset = findMostCommonOffset(tokens);
-// for (const [id, token] of tokens.entries()) {
-//   try {
-//     const url = decodeAtOffset(token, offset);
-//     console.log(id, url);
-//   } catch (e) {
-//     // console.warn("Failed to decode token", id, token, e);
-//   }
-// }
-// console.log("Using offset", offset);
-
+// })
