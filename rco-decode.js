@@ -87,7 +87,6 @@ function atob(input) {
 }
 
 function mostCommon(arr) {
-  console.log(arr)
   const counts = new Map();
   let maxCount = 0;
   let mostCommonValue;
@@ -101,17 +100,14 @@ function mostCommon(arr) {
       mostCommonValue = item;
     }
   }
-  console.log("Most common offset is", mostCommonValue, "with count", maxCount);
 
   return mostCommonValue;
 }
 
 
 
-// /** @type {string[]}  */ 
 const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || [];
 
-// /** @type {number}  */ 
 const offset = findMostCommonOffset(tokens);
 
 JSON.stringify(tokens.map(token => decodeAtOffset(token, offset)));
