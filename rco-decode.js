@@ -59,7 +59,7 @@ function decodeAtOffset(token, offset) {
   token = token.substring(0, token.length - 11) + token.slice(-2);
 
   // base64 decode
-  token = decodeURIComponent(atob(token));
+  token = decodeURIComponent(encodeURIComponent(atob(token)));
 
   // remove chars between index 13 and 17
   token = token.substring(0, 13) + token.substring(17);
