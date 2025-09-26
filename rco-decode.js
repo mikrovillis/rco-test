@@ -37,6 +37,7 @@ function findMostCommonOffset(tokens) {
   return mostCommon(offsets);
 }
 
+// decodes a single token with the given offset
 function decodeAtOffset(token, offset) {
   // in dTfnT on rco, slices a random size from start of token 
   // ex: function dTfnT(x,y,z,d,u,sfree, t, z) { sfree.push(z.substr(7, z.length - 7)); }
@@ -86,6 +87,7 @@ function atob(input) {
 }
 
 function mostCommon(arr) {
+  console.log(arr)
   const counts = new Map();
   let maxCount = 0;
   let mostCommonValue;
@@ -99,19 +101,31 @@ function mostCommon(arr) {
       mostCommonValue = item;
     }
   }
+  console.log("Most common offset is", mostCommonValue, "with count", maxCount);
 
   return mostCommonValue;
 }
 
 
 
+// /** @type {string[]}  */ 
 const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || [];
 
+// /** @type {number}  */ 
 const offset = findMostCommonOffset(tokens);
 
 JSON.stringify(tokens.map(token => decodeAtOffset(token, offset)));
 
 
+
+document.body.querySelectorAll("script").forEach(script => {
+	/** @type {string[]}  */ 
+  const tokens = [...script.innerHTML.matchAll(tokenPattern)].map(m => m[1]) || [];
+  const offset = findMostCommonOffset(tokens);
+  console.log(tokens, offset)
+  console.log("Decoded urls:", JSON.stringify(tokens.map(token => decodeAtOffset(token, offset))));
+  
+})
 // const tokens = [...$0.innerHTML.matchAll(tokenPattern)].map(m => m[1]) || [];
 
 // const offset = findMostCommonOffset(tokens);
@@ -124,3 +138,4 @@ JSON.stringify(tokens.map(token => decodeAtOffset(token, offset)));
 //   }
 // }
 // console.log("Using offset", offset);
+
