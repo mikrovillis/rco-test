@@ -39,6 +39,7 @@ function findMostCommonOffset(tokens) {
 
 // decodes a single token with the given offset
 function decodeAtOffset(token, offset) {
+
   // in dTfnT on rco, slices a random size from start of token 
   // ex: function dTfnT(x,y,z,d,u,sfree, t, z) { sfree.push(z.substr(7, z.length - 7)); }
   token = token.slice(offset);
@@ -108,9 +109,15 @@ function mostCommon(arr) {
 
 const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || [];
 
-const offset = findMostCommonOffset(tokens);
+let pageLinks;
+if (tokens.every(t => t.includes("https"))) {
+  pageLinks = tokens.map(token => token.slice(token.indexOf("https"))); 
 
-const pageLinks = tokens.map(token => decodeAtOffset(token, offset));
+} else {
+  const offset = findMostCommonOffset(tokens);
+  
+  pageLinks = tokens.map(token => decodeAtOffset(token, offset));
+}
 
 JSON.stringify(pageLinks);
 
