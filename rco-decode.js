@@ -106,7 +106,7 @@ function mostCommon(arr) {
 }
 
 
-
+const _encryptedString = $0.innerHTML;
 const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || [];
 
 let pageLinks;
@@ -117,6 +117,9 @@ if (tokens.every(t => t.includes("https"))) {
   const offset = findMostCommonOffset(tokens);
   
   pageLinks = tokens.map(token => decodeAtOffset(token, offset));
+  if (tokens.every(token => token.includes("ip=0"))) {
+    pageLinks = pageLinks.map(url => url.replace("https://2.bp.blogspot.com", "https://ano1.rconet.biz/pic"));
+  }
 }
 
 JSON.stringify(pageLinks);
