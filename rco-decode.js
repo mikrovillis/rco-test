@@ -106,7 +106,6 @@ function mostCommon(arr) {
 }
 
 
-const _encryptedString = $0.innerHTML;
 const tokens = [..._encryptedString.matchAll(tokenPattern)].map(m => m[1]) || [];
 
 let pageLinks;
