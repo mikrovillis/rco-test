@@ -1,3 +1,5 @@
 node_modules/
 baeu-*.js
 beau-*.js
+crawler.js
+test.html

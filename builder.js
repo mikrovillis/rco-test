@@ -1,11 +1,11 @@
-const fs = require("fs").promises;
-const terser = require("terser");
+import fs from "fs/promises";
+import { minify } from "terser";
 
 async function build(inputFile, outputFile) {
   const raw = await fs.readFile(inputFile, "utf8");
 
   // Minify safely
-  const min = await terser.minify(raw, {
+  const min = await minify(raw, {
     compress: true,
     mangle: false,
     output: { comments: false }
